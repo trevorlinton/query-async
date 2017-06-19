@@ -1,13 +1,17 @@
 {
   "name": "query-async",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Perform async/await queries against postgresql or oracle",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "trevor.linton@gmail.com",
-  "repo":"https://github.com/trevorlinton/query-async",
+  "keywords":["query", "oracle"],
+  "author": "Trevor Linton",
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/trevorlinton/query-async"
+  },
   "license": "ISC",
   "dependencies": {
   }
