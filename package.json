@@ -1,6 +1,6 @@
 {
   "name": "query-async",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Perform async/await queries against postgresql or oracle",
   "main": "index.js",
   "scripts": {

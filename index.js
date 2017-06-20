@@ -29,18 +29,27 @@ module.exports = async function(db_driver, user, pass, host, port, db, ssl) {
 		let exec = null;
 		if(db_driver === 'oracle' || db_driver === 'oracledb') {
 			driver = require('oracledb');
-			driver.getConnection( {
+			driver.createPool( {
 				user          : user,
 				password      : pass,
 				connectString : host + ":" + port + "/" + db
 			},
-			function(err, connection)
+			function(err, pool)
 			{
 				if(err) {
 					return conn_reject(err)
 				}
-				driver = connection
-				exec = connection.execute.bind(connection)
+				exec = function(sql, params, callback) {
+					pool.getConnection(function(err, connection) {
+						if(err) {
+							return callback(err)
+						}
+						connection.execute(sql, params, (err, results) => {
+							connection.close()
+							callback(err, results)
+						});
+					});
+				}
 				conn_resolve(query.bind(query, db_driver, exec))
 			})
 		} else {
